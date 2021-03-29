@@ -7,16 +7,22 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("lifecycle", "onCreate")
-        super.onCreate(savedInstanceState)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("lifecycle", "onResume")
+    //    fun replaceFragment(fragment: Fragment) {
+//        val fragmentManager = supportFragmentManager
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.replace(R.id.show, fragment)
+//        fragmentTransaction.commit()
+//    }
+    val fragment: ResultFragment = ResultFragment()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val zero = findViewById<TextView>(R.id.zero)
@@ -30,12 +36,13 @@ class MainActivity : AppCompatActivity() {
         val eight = findViewById<TextView>(R.id.eight)
         val nine = findViewById<TextView>(R.id.nine)
         val clear = findViewById<TextView>(R.id.clear)
-//        val clearEntry = findViewById<TextView>(R.id.clear_entry)
+        val clearEntry = findViewById<TextView>(R.id.clear_entry)
         val plus = findViewById<TextView>(R.id.plus)
         val equal = findViewById<TextView>(R.id.equal)
         val hourView = findViewById<EditText>(R.id.hour)
         val minView = findViewById<EditText>(R.id.min)
         val secView = findViewById<EditText>(R.id.sec)
+        val back = findViewById<TextView>(R.id.back)
 
         var hour: Int = 0
         var min: Int = 0
@@ -120,6 +127,9 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
+                clearEntry.setOnClickListener {
+                    hourView.setText("")
+                }
             }
         }
 
@@ -194,6 +204,9 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
+                }
+                clearEntry.setOnClickListener {
+                    minView.setText("")
                 }
             }
         }
@@ -270,6 +283,9 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
+                clearEntry.setOnClickListener {
+                    secView.setText("")
+                }
             }
         }
 
@@ -305,17 +321,34 @@ class MainActivity : AppCompatActivity() {
             }
             if (minView.getText().toString().isNotEmpty()) {
                 min += minView.getText().toString().toInt()
-
             }
             if (secView.getText().toString().isNotEmpty()) {
                 sec += secView.getText().toString().toInt()
-
             }
-            val intent = Intent(this@MainActivity, ResultActivity::class.java)
-            intent.putExtra("hour", hour)
-            intent.putExtra("min", min)
-            intent.putExtra("sec", sec)
-            startActivity(intent)
+
+            val fragmentManager: FragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            val bundle = Bundle()
+            bundle.putInt("hour", hour)
+            bundle.putInt("min", min)
+            bundle.putInt("sec", sec)
+            fragmentTransaction.replace(R.id.show, fragment.apply { arguments = bundle })
+            fragmentTransaction.commit()
+        }
+
+        back.setOnClickListener {
+            val fragmentManager: FragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.remove(fragment)
+            fragmentTransaction.commit()
+
+            hourView.setText("")
+            minView.setText("")
+            secView.setText("")
+            hour = 0
+            min = 0
+            sec = 0
         }
     }
 }

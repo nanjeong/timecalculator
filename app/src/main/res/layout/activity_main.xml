@@ -8,105 +8,121 @@
     android:weightSum="7"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/show"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.5"
-        android:background="#16000000"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:background="@color/show_background">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
             android:orientation="vertical"
-            android:weightSum="3">
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="3">
 
-                <EditText
-                    android:layout_marginRight="15dp"
-                    android:id="@+id/hour"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    android:inputType="number"
-                    android:maxLength="5"
-                    android:textColor="#75000000"
-                    android:textSize="35sp" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="h"
-                    android:textColor="#75000000"
-                    android:textSize="45sp" />
+                    <EditText
+                        android:id="@+id/hour"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="#75000000"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="h"
+                        android:textColor="#75000000"
+                        android:textSize="45sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/min"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="#75000000"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="m"
+                        android:textColor="#75000000"
+                        android:textSize="45sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sec"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="#75000000"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="s"
+                        android:textColor="#75000000"
+                        android:textSize="45sp" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/min"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:inputType="number"
-                    android:maxLength="5"
-                    android:textColor="#75000000"
-                    android:textSize="35sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="m"
-                    android:textColor="#75000000"
-                    android:textSize="45sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/sec"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:inputType="number"
-                    android:maxLength="5"
-                    android:textColor="#75000000"
-                    android:textSize="35sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="s"
-                    android:textColor="#75000000"
-                    android:textSize="45sp" />
-            </LinearLayout>
         </LinearLayout>
+    </FrameLayout>
 
-    </LinearLayout>
+
+    <!--    <fragment-->
+    <!--        android:id="@+id/keypad"-->
+    <!--        android:name="com.example.timecalculator.KeypadFragment"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="4.5" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -236,10 +252,19 @@
                 android:weightSum="3">
 
                 <TextView
+                    android:id="@+id/back"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Back"
+                    android:textSize="20sp" />
+
+                <TextView
                     android:id="@+id/zero"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:gravity="center"
                     android:text="0"
                     android:textSize="20sp" />

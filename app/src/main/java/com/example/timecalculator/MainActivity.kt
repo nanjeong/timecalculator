@@ -7,323 +7,300 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.*
+import com.example.timecalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    //    fun replaceFragment(fragment: Fragment) {
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.show, fragment)
-//        fragmentTransaction.commit()
-//    }
+    private lateinit var binding: ActivityMainBinding
     val fragment: ResultFragment = ResultFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val zero = findViewById<TextView>(R.id.zero)
-        val one = findViewById<TextView>(R.id.one)
-        val two = findViewById<TextView>(R.id.two)
-        val three = findViewById<TextView>(R.id.three)
-        val four = findViewById<TextView>(R.id.four)
-        val five = findViewById<TextView>(R.id.five)
-        val six = findViewById<TextView>(R.id.six)
-        val seven = findViewById<TextView>(R.id.seven)
-        val eight = findViewById<TextView>(R.id.eight)
-        val nine = findViewById<TextView>(R.id.nine)
-        val clear = findViewById<TextView>(R.id.clear)
-        val clearEntry = findViewById<TextView>(R.id.clear_entry)
-        val plus = findViewById<TextView>(R.id.plus)
-        val equal = findViewById<TextView>(R.id.equal)
-        val hourView = findViewById<EditText>(R.id.hour)
-        val minView = findViewById<EditText>(R.id.min)
-        val secView = findViewById<EditText>(R.id.sec)
-        val back = findViewById<TextView>(R.id.back)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         var hour: Int = 0
         var min: Int = 0
         var sec: Int = 0
 
-        hourView.showSoftInputOnFocus = false
-        hourView.isCursorVisible = false
-        minView.showSoftInputOnFocus = false
-        minView.isCursorVisible = false
-        secView.showSoftInputOnFocus = false
-        secView.isCursorVisible = false
+        binding.hour.showSoftInputOnFocus = false
+        binding.hour.isCursorVisible = false
+        binding.min.showSoftInputOnFocus = false
+        binding.min.isCursorVisible = false
+        binding.sec.showSoftInputOnFocus = false
+        binding.sec.isCursorVisible = false
 
-        hourView.setOnFocusChangeListener { v, hasFocus ->
+        binding.hour.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                zero.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}0")
+                binding.zero.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}0")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                one.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}1")
+                binding.one.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}1")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                two.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}2")
+                binding.two.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}2")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                three.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}3")
+                binding.three.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}3")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                four.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}4")
+                binding.four.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}4")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                five.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}5")
+                binding.five.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}5")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                six.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}6")
+                binding.six.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}6")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                seven.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}7")
+                binding.seven.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}7")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                eight.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}8")
+                binding.eight.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}8")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                nine.setOnClickListener {
-                    if (hourView.getText().toString().length < 5) {
-                        hourView.setText("${hourView.getText()}9")
+                binding.nine.setOnClickListener {
+                    if (binding.hour.getText().toString().length < 5) {
+                        binding.hour.setText("${binding.hour.getText()}9")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                clearEntry.setOnClickListener {
-                    hourView.setText("")
+                binding.clearEntry.setOnClickListener {
+                    binding.hour.setText("")
                 }
             }
         }
 
-        minView.setOnFocusChangeListener { v, hasFocus ->
+        binding.min.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                zero.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}0")
+                binding.zero.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}0")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                one.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}1")
+                binding.one.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}1")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                two.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}2")
+                binding.two.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}2")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                three.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}3")
+                binding.three.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}3")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                four.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}4")
+                binding.four.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}4")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                five.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}5")
+                binding.five.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}5")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                six.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}6")
+                binding.six.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}6")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                seven.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}7")
+                binding.seven.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}7")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                eight.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}8")
+                binding.eight.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}8")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                nine.setOnClickListener {
-                    if (minView.getText().toString().length < 5) {
-                        minView.setText("${minView.getText()}9")
+                binding.nine.setOnClickListener {
+                    if (binding.min.getText().toString().length < 5) {
+                        binding.min.setText("${binding.min.getText()}9")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                clearEntry.setOnClickListener {
-                    minView.setText("")
+                binding.clearEntry.setOnClickListener {
+                    binding.min.setText("")
                 }
             }
         }
 
-        secView.setOnFocusChangeListener { v, hasFocus ->
+        binding.sec.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                zero.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}0")
+                binding.zero.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}0")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                one.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}1")
+                binding.one.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}1")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                two.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}2")
+                binding.two.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}2")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                three.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}3")
+                binding.three.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}3")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                four.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}4")
+                binding.four.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}4")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                five.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}5")
+                binding.five.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}5")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                six.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}6")
+                binding.six.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}6")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                seven.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}7")
+                binding.seven.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}7")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                eight.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}8")
+                binding.eight.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}8")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                nine.setOnClickListener {
-                    if (secView.getText().toString().length < 5) {
-                        secView.setText("${secView.getText()}9")
+                binding.nine.setOnClickListener {
+                    if (binding.sec.getText().toString().length < 5) {
+                        binding.sec.setText("${binding.sec.getText()}9")
                     } else {
                         Toast.makeText(this, "5자리까지 입력할 수 있습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                clearEntry.setOnClickListener {
-                    secView.setText("")
+                binding.clearEntry.setOnClickListener {
+                    binding.sec.setText("")
                 }
             }
         }
 
-        clear.setOnClickListener {
-            hourView.setText("")
-            minView.setText("")
-            secView.setText("")
+        binding.clear.setOnClickListener {
+            binding.hour.setText("")
+            binding.min.setText("")
+            binding.sec.setText("")
             hour = 0
             min = 0
             sec = 0
         }
 
-        plus.setOnClickListener {
-            if (hourView.getText().toString().isNotEmpty()) {
-                hour += hourView.getText().toString().toInt()
+        binding.plus.setOnClickListener {
+            if (binding.hour.getText().toString().isNotEmpty()) {
+                hour += binding.hour.getText().toString().toInt()
             }
-            if (minView.getText().toString().isNotEmpty()) {
-                min += minView.getText().toString().toInt()
+            if (binding.min.getText().toString().isNotEmpty()) {
+                min += binding.min.getText().toString().toInt()
 
             }
-            if (secView.getText().toString().isNotEmpty()) {
-                sec += secView.getText().toString().toInt()
+            if (binding.sec.getText().toString().isNotEmpty()) {
+                sec += binding.sec.getText().toString().toInt()
 
             }
-            hourView.setText("")
-            minView.setText("")
-            secView.setText("")
+            binding.hour.setText("")
+            binding.min.setText("")
+            binding.sec.setText("")
         }
 
-        equal.setOnClickListener {
-            if (hourView.getText().toString().isNotEmpty()) {
-                hour += hourView.getText().toString().toInt()
+        binding.equal.setOnClickListener {
+            if (binding.hour.getText().toString().isNotEmpty()) {
+                hour += binding.hour.getText().toString().toInt()
             }
-            if (minView.getText().toString().isNotEmpty()) {
-                min += minView.getText().toString().toInt()
+            if (binding.min.getText().toString().isNotEmpty()) {
+                min += binding.min.getText().toString().toInt()
             }
-            if (secView.getText().toString().isNotEmpty()) {
-                sec += secView.getText().toString().toInt()
+            if (binding.sec.getText().toString().isNotEmpty()) {
+                sec += binding.sec.getText().toString().toInt()
             }
 
             val fragmentManager: FragmentManager = supportFragmentManager
@@ -337,15 +314,15 @@ class MainActivity : AppCompatActivity() {
             fragmentTransaction.commit()
         }
 
-        back.setOnClickListener {
+        binding.back.setOnClickListener {
             val fragmentManager: FragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.remove(fragment)
             fragmentTransaction.commit()
 
-            hourView.setText("")
-            minView.setText("")
-            secView.setText("")
+            binding.hour.setText("")
+            binding.min.setText("")
+            binding.sec.setText("")
             hour = 0
             min = 0
             sec = 0

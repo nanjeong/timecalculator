@@ -1,317 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="7"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/show"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:background="@color/show_background">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/hour"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="5"
-                        android:textColor="#75000000"
-                        android:textSize="35sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="h"
-                        android:textColor="#75000000"
-                        android:textSize="45sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/min"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="5"
-                        android:textColor="#75000000"
-                        android:textSize="35sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="m"
-                        android:textColor="#75000000"
-                        android:textSize="45sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/sec"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="5"
-                        android:textColor="#75000000"
-                        android:textSize="35sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="s"
-                        android:textColor="#75000000"
-                        android:textSize="45sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4.5"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="4">
+        app:layout_constraintGuide_percent="0.33" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/show"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/show_background"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="3">
+        <EditText
+            android:id="@+id/hour"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="50dp"
+            android:gravity="right"
+            android:inputType="number"
+            android:maxLength="5"
+            android:textColor="#75000000"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toTopOf="@id/min"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/seven"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="7"
-                    android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="18dp"
+            android:text="h"
+            android:textColor="#75000000"
+            android:textSize="45sp"
+            app:layout_constraintBottom_toBottomOf="@id/hour"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/eight"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="8"
-                    android:textSize="20sp" />
+        <EditText
+            android:id="@+id/min"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="50dp"
+            android:gravity="right"
+            android:inputType="number"
+            android:maxLength="5"
+            android:textColor="#75000000"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toTopOf="@id/sec"
+            app:layout_constraintTop_toBottomOf="@id/hour" />
 
-                <TextView
-                    android:id="@+id/nine"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="9"
-                    android:textSize="20sp" />
-            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:text="m"
+            android:textColor="#75000000"
+            android:textSize="45sp"
+            app:layout_constraintBottom_toBottomOf="@id/min"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hour" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="3">
+        <EditText
+            android:id="@+id/sec"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="50dp"
+            android:gravity="right"
+            android:inputType="number"
+            android:maxLength="5"
+            android:textColor="#75000000"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/min" />
 
-                <TextView
-                    android:id="@+id/four"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4"
-                    android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="18dp"
+            android:text="s"
+            android:textColor="#75000000"
+            android:textSize="45sp"
+            app:layout_constraintBottom_toBottomOf="@id/sec"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/min" />
 
-                <TextView
-                    android:id="@+id/five"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="5"
-                    android:textSize="20sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/six"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="6"
-                    android:textSize="20sp" />
+    <TextView
+        android:id="@+id/seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="7"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/four"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/eight"
+        app:layout_constraintTop_toBottomOf="@id/show" />
 
-            </LinearLayout>
+    <TextView
+        android:id="@+id/eight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="8"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/five"
+        app:layout_constraintLeft_toRightOf="@id/seven"
+        app:layout_constraintRight_toLeftOf="@id/nine"
+        app:layout_constraintTop_toBottomOf="@id/show" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="3">
+    <TextView
+        android:id="@+id/nine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="9"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/six"
+        app:layout_constraintLeft_toRightOf="@id/eight"
+        app:layout_constraintRight_toLeftOf="@id/clear"
+        app:layout_constraintTop_toBottomOf="@id/show" />
 
-                <TextView
-                    android:id="@+id/one"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textSize="20sp" />
+    <TextView
+        android:id="@+id/clear"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/keypad_background"
+        android:gravity="center"
+        android:text="C"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/clear_entry"
+        app:layout_constraintLeft_toRightOf="@id/nine"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/show" />
 
-                <TextView
-                    android:id="@+id/two"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textSize="20sp" />
+    <TextView
+        android:id="@+id/four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="4"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/one"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/five"
+        app:layout_constraintTop_toBottomOf="@id/seven" />
 
-                <TextView
-                    android:id="@+id/three"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="3"
-                    android:textSize="20sp" />
+    <TextView
+        android:id="@+id/five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="5"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/two"
+        app:layout_constraintLeft_toRightOf="@id/four"
+        app:layout_constraintRight_toLeftOf="@id/six"
+        app:layout_constraintTop_toBottomOf="@id/eight" />
 
-            </LinearLayout>
+    <TextView
+        android:id="@+id/six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="6"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/three"
+        app:layout_constraintLeft_toRightOf="@id/five"
+        app:layout_constraintRight_toLeftOf="@id/clear_entry"
+        app:layout_constraintTop_toBottomOf="@id/nine" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="3">
+    <TextView
+        android:id="@+id/clear_entry"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/keypad_background"
+        android:gravity="center"
+        android:text="CE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/plus"
+        app:layout_constraintLeft_toRightOf="@id/six"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clear" />
 
-                <TextView
-                    android:id="@+id/back"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Back"
-                    android:textSize="20sp" />
+    <TextView
+        android:id="@+id/one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/two"
+        app:layout_constraintTop_toBottomOf="@id/four" />
 
-                <TextView
-                    android:id="@+id/zero"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="20sp" />
+    <TextView
+        android:id="@+id/two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="2"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/back"
+        app:layout_constraintLeft_toRightOf="@id/one"
+        app:layout_constraintRight_toLeftOf="@id/three"
+        app:layout_constraintTop_toBottomOf="@id/five" />
 
-            </LinearLayout>
-        </LinearLayout>
+    <TextView
+        android:id="@+id/three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/zero"
+        app:layout_constraintLeft_toRightOf="@id/two"
+        app:layout_constraintRight_toLeftOf="@id/plus"
+        app:layout_constraintTop_toBottomOf="@id/six" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="4">
+    <TextView
+        android:id="@+id/plus"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/keypad_background"
+        android:gravity="center"
+        android:text="+"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/equal"
+        app:layout_constraintLeft_toRightOf="@id/three"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clear_entry" />
 
-            <TextView
-                android:id="@+id/clear"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/keypad_background"
-                android:gravity="center"
-                android:text="C"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="Back"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/zero"
+        app:layout_constraintTop_toBottomOf="@id/one" />
 
-            <TextView
-                android:id="@+id/clear_entry"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/keypad_background"
-                android:gravity="center"
-                android:text="CE"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="30dp"
+        android:text="0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/back"
+        app:layout_constraintRight_toLeftOf="@id/equal"
+        app:layout_constraintTop_toBottomOf="@id/three" />
 
-            <TextView
-                android:id="@+id/plus"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/keypad_background"
-                android:gravity="center"
-                android:text="+"
-                android:textSize="22sp" />
+    <TextView
+        android:id="@+id/equal"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/keypad_background"
+        android:gravity="center"
+        android:text="="
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/plus"
+        app:layout_constraintRight_toRightOf="@id/plus"
+        app:layout_constraintTop_toBottomOf="@id/plus" />
 
-            <TextView
-                android:id="@+id/equal"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/keypad_background"
-                android:gravity="center"
-                android:text="="
-                android:textSize="22sp" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

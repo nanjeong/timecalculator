@@ -326,6 +326,10 @@ class MainActivity : AppCompatActivity() {
             hour = 0
             min = 0
             sec = 0
+
+            binding.hour.clearFocus()
+            binding.min.clearFocus()
+            binding.sec.clearFocus()
         }
     }
 }

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="show_background">#EAEAEA</color>
     <color name="point">#FFC107</color>
+    <color name="inputText">#75000000</color>
 </resources>

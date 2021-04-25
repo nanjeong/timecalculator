@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="input">35sp</dimen>
+    <dimen name="time_unit">45sp</dimen>
+    <dimen name="keypad">20sp</dimen>
+</resources>

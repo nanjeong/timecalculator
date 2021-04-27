@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.timecalculator.databinding.ResultFragmentBinding
@@ -18,28 +17,17 @@ class ResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.result_fragment, container, false)
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         val bundle = arguments
 
         var hour = bundle?.getInt("hour") ?: 0
         var min = bundle?.getInt("min") ?: 0
         var sec = bundle?.getInt("sec") ?: 0
 
-        val overSec = sec / 60
-        val remainSec = sec % 60
-        sec = remainSec
-        min += overSec
-
-        val overMin = min / 60
-        val remainMin = min % 60
-        min = remainMin
-        hour += overMin
+        calc(hour, min, sec).let {
+            hour = it.first
+            min = it.second
+            sec = it.third
+        }
 
         binding.apply {
             resultTime = if (hour < 10) {
@@ -48,7 +36,29 @@ class ResultFragment : Fragment() {
                 ResultTime(String.format("%d : %02d : %02d", hour, min, sec))
             }
         }
+        return binding.root
+    }
 
+    private fun calc(h: Int, m: Int, s: Int): Triple<Int, Int, Int> {
+        var hour = h
+        var min = m
+        var sec = s
 
+        over60(min, sec).let {
+            min = it.first
+            sec = it.second
+        }
+        over60(hour, min).let {
+            hour = it.first
+            min = it.second
+        }
+        return Triple(hour, min, sec)
+    }
+
+    private fun over60(biggerUnit: Int, smallerUnit: Int): Pair<Int, Int> {
+        val over = smallerUnit / 60
+        val remain = smallerUnit % 60
+
+        return Pair(biggerUnit+over, remain)
     }
 }

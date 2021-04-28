@@ -1,14 +1,11 @@
 package com.example.timecalculator
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.*
 import com.example.timecalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,10 +13,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var inputArray: Array<EditText>
     private lateinit var numberKeypad: Array<Pair<TextView, String>>
-    private var hour: Int = 0
-    private var min: Int = 0
-    private var sec: Int = 0
-    private val fragment: ResultFragment = ResultFragment()
+    private var h: Int = 0
+    private var m: Int = 0
+    private var s: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,25 +50,29 @@ class MainActivity : AppCompatActivity() {
             clearInput()
         }
 
-        val fragmentManager: FragmentManager = supportFragmentManager
-
         binding.equal.setOnClickListener {
             calcTime()
-
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            val bundle = Bundle()
-            bundle.putInt("hour", hour)
-            bundle.putInt("min", min)
-            bundle.putInt("sec", sec)
-
-            fragmentTransaction.replace(R.id.show, fragment.apply { arguments = bundle })
-            fragmentTransaction.commit()
+            calcResult(h, m, s).let {
+                h = it.first
+                m = it.second
+                s = it.third
+            }
+            binding.apply {
+                show.visibility = View.GONE
+                result.visibility = View.VISIBLE
+                resultTime = if (h < 10) {
+                    ResultTime(String.format("%02d : %02d : %02d", h, m, s))
+                } else {
+                    ResultTime(String.format("%d : %02d : %02d", h, m, s))
+                }
+            }
         }
 
         binding.back.setOnClickListener {
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.remove(fragment)
-            fragmentTransaction.commit()
+            binding.apply {
+                result.visibility = View.GONE
+                show.visibility = View.VISIBLE
+            }
 
             clearInput()
             resetInput()
@@ -112,13 +112,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun calcTime() {
         if (binding.hour.text.isNotEmpty()) {
-            hour += binding.hour.text.toString().toInt()
+            h += binding.hour.text.toString().toInt()
         }
         if (binding.min.text.isNotEmpty()) {
-            min += binding.min.text.toString().toInt()
+            m += binding.min.text.toString().toInt()
         }
         if (binding.sec.text.isNotEmpty()) {
-            sec += binding.sec.text.toString().toInt()
+            s += binding.sec.text.toString().toInt()
         }
     }
 
@@ -129,15 +129,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetInput() {
-        hour = 0
-        min = 0
-        sec = 0
+        h = 0
+        m = 0
+        s = 0
     }
 
     private fun noFocus() {
         for (input in inputArray) {
             input.clearFocus()
         }
+    }
+
+    private fun calcResult(h: Int, m: Int, s: Int): Triple<Int, Int, Int> {
+        var hour = h
+        var min = m
+        var sec = s
+
+        over60(min, sec).let {
+            min = it.first
+            sec = it.second
+        }
+        over60(hour, min).let {
+            hour = it.first
+            min = it.second
+        }
+        return Triple(hour, min, sec)
+    }
+
+    private fun over60(biggerUnit: Int, smallerUnit: Int): Pair<Int, Int> {
+        val over = smallerUnit / 60
+        val remain = smallerUnit % 60
+
+        return Pair(biggerUnit+over, remain)
     }
 }
 

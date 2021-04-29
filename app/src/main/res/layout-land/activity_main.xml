@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="resultTime"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/show"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/show_background"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/hour"
+                style="@style/InputStyleLandscape"
+                app:layout_constraintBottom_toTopOf="@id/min"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.35"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/hour_text"
+                style="@style/TimeUnitStyle"
+                android:layout_marginRight="18dp"
+                android:text="h"
+                app:layout_constraintBaseline_toBaselineOf="@+id/hour"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/hour" />
+
+            <EditText
+                android:id="@+id/min"
+                style="@style/InputStyleLandscape"
+                app:layout_constraintBottom_toTopOf="@id/sec"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hour" />
+
+            <TextView
+                android:id="@+id/min_text"
+                style="@style/TimeUnitStyle"
+                android:layout_marginRight="8dp"
+                android:text="m"
+                app:layout_constraintBaseline_toBaselineOf="@+id/min"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/min" />
+
+            <EditText
+                android:id="@+id/sec"
+                style="@style/InputStyleLandscape"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/min" />
+
+            <TextView
+                android:id="@+id/sec_text"
+                style="@style/TimeUnitStyle"
+                android:layout_marginRight="18dp"
+                android:text="s"
+                app:layout_constraintBaseline_toBaselineOf="@+id/sec"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/sec" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/result"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/show_background"
+            android:paddingVertical="20dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/resultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={resultTime}"
+                android:textSize="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.45" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/seven"
+            style="@style/NumKeypadStyle"
+            android:text="7"
+            app:layout_constraintBottom_toTopOf="@id/four"
+            app:layout_constraintEnd_toStartOf="@id/eight"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eight"
+            style="@style/NumKeypadStyle"
+            android:text="8"
+            app:layout_constraintBottom_toTopOf="@id/five"
+            app:layout_constraintEnd_toStartOf="@id/nine"
+            app:layout_constraintStart_toEndOf="@id/seven"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nine"
+            style="@style/NumKeypadStyle"
+            android:text="9"
+            app:layout_constraintBottom_toTopOf="@id/six"
+            app:layout_constraintEnd_toStartOf="@id/clear"
+            app:layout_constraintStart_toEndOf="@id/eight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/clear"
+            style="@style/FuncStyle"
+            android:text="C"
+            app:layout_constraintBottom_toTopOf="@id/clear_entry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/nine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/four"
+            style="@style/NumKeypadStyle"
+            android:text="4"
+            app:layout_constraintBottom_toTopOf="@id/one"
+            app:layout_constraintEnd_toStartOf="@id/five"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/seven" />
+
+        <TextView
+            android:id="@+id/five"
+            style="@style/NumKeypadStyle"
+            android:text="5"
+            app:layout_constraintBottom_toTopOf="@id/two"
+            app:layout_constraintEnd_toStartOf="@id/six"
+            app:layout_constraintStart_toEndOf="@id/four"
+            app:layout_constraintTop_toBottomOf="@id/eight" />
+
+        <TextView
+            android:id="@+id/six"
+            style="@style/NumKeypadStyle"
+            android:text="6"
+            app:layout_constraintBottom_toTopOf="@id/three"
+            app:layout_constraintEnd_toStartOf="@id/clear_entry"
+            app:layout_constraintStart_toEndOf="@id/five"
+            app:layout_constraintTop_toBottomOf="@id/nine" />
+
+        <TextView
+            android:id="@+id/clear_entry"
+            style="@style/FuncStyle"
+            android:text="CE"
+            app:layout_constraintBottom_toTopOf="@id/plus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/six"
+            app:layout_constraintTop_toBottomOf="@id/clear" />
+
+        <TextView
+            android:id="@+id/one"
+            style="@style/NumKeypadStyle"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@id/back"
+            app:layout_constraintEnd_toStartOf="@id/two"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/four" />
+
+        <TextView
+            android:id="@+id/two"
+            style="@style/NumKeypadStyle"
+            android:text="2"
+            app:layout_constraintBottom_toTopOf="@id/back"
+            app:layout_constraintEnd_toStartOf="@id/three"
+            app:layout_constraintStart_toEndOf="@id/one"
+            app:layout_constraintTop_toBottomOf="@id/five" />
+
+        <TextView
+            android:id="@+id/three"
+            style="@style/NumKeypadStyle"
+            android:text="3"
+            app:layout_constraintBottom_toTopOf="@id/zero"
+            app:layout_constraintEnd_toStartOf="@id/plus"
+            app:layout_constraintStart_toEndOf="@id/two"
+            app:layout_constraintTop_toBottomOf="@id/six" />
+
+        <TextView
+            android:id="@+id/plus"
+            style="@style/FuncStyle"
+            android:text="+"
+            app:layout_constraintBottom_toTopOf="@id/equal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/three"
+            app:layout_constraintTop_toBottomOf="@id/clear_entry" />
+
+        <TextView
+            android:id="@+id/back"
+            style="@style/NumKeypadStyle"
+            android:text="Back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/zero"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/one" />
+
+        <TextView
+            android:id="@+id/zero"
+            style="@style/NumKeypadStyle"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/equal"
+            app:layout_constraintStart_toEndOf="@id/back"
+            app:layout_constraintTop_toBottomOf="@id/three" />
+
+        <TextView
+            android:id="@+id/equal"
+            style="@style/FuncStyle"
+            android:text="="
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/plus"
+            app:layout_constraintStart_toStartOf="@id/plus"
+            app:layout_constraintTop_toBottomOf="@id/plus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

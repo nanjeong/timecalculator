@@ -6,7 +6,7 @@
     <data>
         <variable
             name="resultTime"
-            type="com.example.timecalculator.ResultTime" />
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,7 +97,7 @@
                 android:id="@+id/resultText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={resultTime.result}"
+                android:text="@={resultTime}"
                 android:textSize="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

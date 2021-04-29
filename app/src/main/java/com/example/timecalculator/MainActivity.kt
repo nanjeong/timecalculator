@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.example.timecalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         inputArray = arrayOf(binding.hour, binding.min, binding.sec)
         numberKeypad = arrayOf(
@@ -61,9 +60,9 @@ class MainActivity : AppCompatActivity() {
                 show.visibility = View.GONE
                 result.visibility = View.VISIBLE
                 resultTime = if (h < 10) {
-                    ResultTime(String.format("%02d : %02d : %02d", h, m, s))
+                    String.format("%02d : %02d : %02d", h, m, s)
                 } else {
-                    ResultTime(String.format("%d : %02d : %02d", h, m, s))
+                    String.format("%d : %02d : %02d", h, m, s)
                 }
             }
         }

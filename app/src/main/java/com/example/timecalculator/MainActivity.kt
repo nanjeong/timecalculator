@@ -9,6 +9,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.timecalculator.databinding.ActivityMainBinding
 
+const val RESULT_VISIBILITY = "result_visibility"
+const val HOUR = "hour"
+const val MIN = "min"
+const val SEC = "sec"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -17,10 +22,21 @@ class MainActivity : AppCompatActivity() {
     private var h: Int = 0
     private var m: Int = 0
     private var s: Int = 0
+    private var flag: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        if (savedInstanceState != null) {
+            flag = savedInstanceState.getInt(RESULT_VISIBILITY)
+            h = savedInstanceState.getInt(HOUR)
+            m = savedInstanceState.getInt(MIN)
+            s = savedInstanceState.getInt(SEC)
+            if (flag == 1) {
+                showResult()
+            }
+        }
 
         inputArray = arrayOf(binding.hour, binding.min, binding.sec)
         numberKeypad = arrayOf(
@@ -56,27 +72,29 @@ class MainActivity : AppCompatActivity() {
                 m = it.second
                 s = it.third
             }
-            binding.apply {
-                show.visibility = View.GONE
-                result.visibility = View.VISIBLE
-                resultTime = if (h < 10) {
-                    String.format("%02d : %02d : %02d", h, m, s)
-                } else {
-                    String.format("%d : %02d : %02d", h, m, s)
-                }
-            }
+            flag = 1
+            showResult()
         }
 
         binding.back.setOnClickListener {
+            flag = 0
             binding.apply {
                 result.visibility = View.GONE
                 show.visibility = View.VISIBLE
             }
-
             clearInput()
             resetInput()
             noFocus()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putInt(RESULT_VISIBILITY, flag)
+        outState.putInt(HOUR, h)
+        outState.putInt(MIN, m)
+        outState.putInt(SEC, s)
     }
 
     private fun setUp() {
@@ -160,6 +178,18 @@ class MainActivity : AppCompatActivity() {
         val remain = smallerUnit % 60
 
         return Pair(biggerUnit+over, remain)
+    }
+
+    private fun showResult() {
+        binding.apply {
+            show.visibility = View.GONE
+            result.visibility = View.VISIBLE
+            resultTime = if (h < 10) {
+                String.format("%02d : %02d : %02d", h, m, s)
+            } else {
+                String.format("%d : %02d : %02d", h, m, s)
+            }
+        }
     }
 }
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="resultTime"
             type="String" />
@@ -30,8 +31,8 @@
             android:focusableInTouchMode="true"
             android:paddingVertical="20dp"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
@@ -97,7 +98,7 @@
                 android:id="@+id/resultText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={resultTime}"
+                android:text="@{resultTime}"
                 android:textSize="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -111,8 +112,8 @@
             style="@style/NumKeypadStyle"
             android:text="7"
             app:layout_constraintBottom_toTopOf="@id/four"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/eight"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline" />
 
         <TextView
@@ -120,8 +121,8 @@
             style="@style/NumKeypadStyle"
             android:text="8"
             app:layout_constraintBottom_toTopOf="@id/five"
-            app:layout_constraintStart_toEndOf="@id/seven"
             app:layout_constraintEnd_toStartOf="@id/nine"
+            app:layout_constraintStart_toEndOf="@id/seven"
             app:layout_constraintTop_toBottomOf="@id/guideline" />
 
         <TextView
@@ -129,8 +130,8 @@
             style="@style/NumKeypadStyle"
             android:text="9"
             app:layout_constraintBottom_toTopOf="@id/six"
-            app:layout_constraintStart_toEndOf="@id/eight"
             app:layout_constraintEnd_toStartOf="@id/clear"
+            app:layout_constraintStart_toEndOf="@id/eight"
             app:layout_constraintTop_toBottomOf="@id/guideline" />
 
         <TextView
@@ -138,8 +139,8 @@
             style="@style/FuncStyle"
             android:text="C"
             app:layout_constraintBottom_toTopOf="@id/clear_entry"
-            app:layout_constraintStart_toEndOf="@id/nine"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/nine"
             app:layout_constraintTop_toBottomOf="@id/guideline" />
 
         <TextView
@@ -147,8 +148,8 @@
             style="@style/NumKeypadStyle"
             android:text="4"
             app:layout_constraintBottom_toTopOf="@id/one"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/five"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/seven" />
 
         <TextView
@@ -156,8 +157,8 @@
             style="@style/NumKeypadStyle"
             android:text="5"
             app:layout_constraintBottom_toTopOf="@id/two"
-            app:layout_constraintStart_toEndOf="@id/four"
             app:layout_constraintEnd_toStartOf="@id/six"
+            app:layout_constraintStart_toEndOf="@id/four"
             app:layout_constraintTop_toBottomOf="@id/eight" />
 
         <TextView
@@ -165,8 +166,8 @@
             style="@style/NumKeypadStyle"
             android:text="6"
             app:layout_constraintBottom_toTopOf="@id/three"
-            app:layout_constraintStart_toEndOf="@id/five"
             app:layout_constraintEnd_toStartOf="@id/clear_entry"
+            app:layout_constraintStart_toEndOf="@id/five"
             app:layout_constraintTop_toBottomOf="@id/nine" />
 
         <TextView
@@ -174,8 +175,8 @@
             style="@style/FuncStyle"
             android:text="CE"
             app:layout_constraintBottom_toTopOf="@id/plus"
-            app:layout_constraintStart_toEndOf="@id/six"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/six"
             app:layout_constraintTop_toBottomOf="@id/clear" />
 
         <TextView
@@ -183,8 +184,8 @@
             style="@style/NumKeypadStyle"
             android:text="1"
             app:layout_constraintBottom_toTopOf="@id/back"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/two"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/four" />
 
         <TextView
@@ -192,8 +193,8 @@
             style="@style/NumKeypadStyle"
             android:text="2"
             app:layout_constraintBottom_toTopOf="@id/back"
-            app:layout_constraintStart_toEndOf="@id/one"
             app:layout_constraintEnd_toStartOf="@id/three"
+            app:layout_constraintStart_toEndOf="@id/one"
             app:layout_constraintTop_toBottomOf="@id/five" />
 
         <TextView
@@ -201,8 +202,8 @@
             style="@style/NumKeypadStyle"
             android:text="3"
             app:layout_constraintBottom_toTopOf="@id/zero"
-            app:layout_constraintStart_toEndOf="@id/two"
             app:layout_constraintEnd_toStartOf="@id/plus"
+            app:layout_constraintStart_toEndOf="@id/two"
             app:layout_constraintTop_toBottomOf="@id/six" />
 
         <TextView
@@ -210,8 +211,8 @@
             style="@style/FuncStyle"
             android:text="+"
             app:layout_constraintBottom_toTopOf="@id/equal"
-            app:layout_constraintStart_toEndOf="@id/three"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/three"
             app:layout_constraintTop_toBottomOf="@id/clear_entry" />
 
         <TextView
@@ -219,8 +220,8 @@
             style="@style/NumKeypadStyle"
             android:text="Back"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/zero"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/one" />
 
         <TextView
@@ -228,8 +229,8 @@
             style="@style/NumKeypadStyle"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/back"
             app:layout_constraintEnd_toStartOf="@id/equal"
+            app:layout_constraintStart_toEndOf="@id/back"
             app:layout_constraintTop_toBottomOf="@id/three" />
 
         <TextView
@@ -237,8 +238,8 @@
             style="@style/FuncStyle"
             android:text="="
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/plus"
             app:layout_constraintEnd_toEndOf="@id/plus"
+            app:layout_constraintStart_toStartOf="@id/plus"
             app:layout_constraintTop_toBottomOf="@id/plus" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

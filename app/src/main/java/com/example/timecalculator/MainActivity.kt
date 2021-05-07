@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.timecalculator.databinding.ActivityMainBinding
 
 const val RESULT_VISIBILITY = "result_visibility"
@@ -22,18 +23,18 @@ class MainActivity : AppCompatActivity() {
     private var h: Int = 0
     private var m: Int = 0
     private var s: Int = 0
-    private var flag: Int = 0
+    private var showFlag: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         if (savedInstanceState != null) {
-            flag = savedInstanceState.getInt(RESULT_VISIBILITY)
+            showFlag = savedInstanceState.getInt(RESULT_VISIBILITY)
             h = savedInstanceState.getInt(HOUR)
             m = savedInstanceState.getInt(MIN)
             s = savedInstanceState.getInt(SEC)
-            if (flag == 1) {
+            if (showFlag == 1) {
                 showResult()
             }
         }
@@ -58,11 +59,17 @@ class MainActivity : AppCompatActivity() {
         binding.clear.setOnClickListener {
             clearInput()
             resetInput()
+            noFocus()
+            if (showFlag == 1) {
+                hideResult()
+            }
+            showFlag = 0
         }
 
         binding.plus.setOnClickListener {
             calcTime()
             clearInput()
+            noFocus()
         }
 
         binding.equal.setOnClickListener {
@@ -72,16 +79,13 @@ class MainActivity : AppCompatActivity() {
                 m = it.second
                 s = it.third
             }
-            flag = 1
+            showFlag = 1
             showResult()
         }
 
         binding.back.setOnClickListener {
-            flag = 0
-            binding.apply {
-                result.visibility = View.GONE
-                show.visibility = View.VISIBLE
-            }
+            showFlag = 0
+            hideResult()
             clearInput()
             resetInput()
             noFocus()
@@ -91,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putInt(RESULT_VISIBILITY, flag)
+        outState.putInt(RESULT_VISIBILITY, showFlag)
         outState.putInt(HOUR, h)
         outState.putInt(MIN, m)
         outState.putInt(SEC, s)
@@ -189,6 +193,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 String.format("%d : %02d : %02d", h, m, s)
             }
+        }
+    }
+
+    private fun hideResult() {
+        binding.apply {
+            result.visibility = View.GONE
+            show.visibility = View.VISIBLE
         }
     }
 }
